@@ -19,8 +19,8 @@ router.get('/', async function(req, res, next) {
   let urlString = url.parse(req.url,true);
   let pagenumber = urlString.query.page;
   let data = await getUsersAsync(pagenumber);
-  res.set('Cache-Control', 'public, max-age = 86400');
-  let pagingInfo = 'http://localhost:3000/users?page=pagenumber';
+  // res.set('Cache-Control', 'public, max-age = 86400');
+  let pagingInfo = 'http://localhost:8000/users?page=pagenumber';
   res.set('Paging', pagingInfo);
   res.send(data);
 });
