@@ -5,7 +5,7 @@ const path = require('path');
 
 http.createServer((req, res) => {
     const pictureFilePath = path.join(__dirname, 'pic1.jpg');
-    const image = fs.stream(pictureFilePath);
+    const image = fs.createReadStream(pictureFilePath);
     res.writeHead('200', { 'Content-Type': 'image/jpg' });
     image.pipe(res);
 }).listen(8000, () => {
