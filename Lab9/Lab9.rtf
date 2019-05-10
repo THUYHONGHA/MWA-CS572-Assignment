@@ -1,0 +1,23 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;}
+\margl1440\margr1440\vieww13720\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf0 1. Find all the zip codes in Washington state.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 \cb3 \CocoaLigature0 db.zips.aggregate([\{$match:\{'state': 'WA'\}\}, \{$project: \{'_id':0, 'zipcode': '$_id'\}\}])\
+\
+2. Find all the zip codes with a population less than 5000.\
+\
+db.zips.aggregate([\{$match:\{'pop':\{$lt: 5000\}\}\},\{$project:\{'_id\'92:0, \'92zipcode':'$_id'\}\}])\
+\
+3. Find all cities that have more than one zip code, sort the results by state and city name.\
+\
+db.zips.aggregate([\{$group: \{'_id': '$city', 'totalzipcode': \{$sum:1\}\}\},\{$match:\{'totalzipcode': \{$gte: 2\}\}\},\{$project: \{'_id':0,'city':'$_id', 'state':1\}\},\{$sort:\{'state':1, 'city':1\}\}])\
+\
+4. Display the least populated city in each state.\
+\
+db.zips.aggregate([\{$group:\{'_id': \{'city':'$city', 'state': '$state'\}, 'pop':\{$sum:'$pop'\}\}\},\{$sort:\{'_id.state':1, 'pop':1\}\},\{$group:\{'_id': '$_id.state', 'city': \{$first: '$_id.city'\}, 'pop':\{$first: '$pop'\}\}\},\{$sort: \{'_id':1\}\}])}
