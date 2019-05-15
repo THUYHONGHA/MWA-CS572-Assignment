@@ -1,0 +1,3 @@
+<input type="number" placeholder="Enter a value" [value]="" (input) = "counter=$event.target.value">
+<app-counter [counterValue]="counter" (counterChange)="onChangeCounter($event)"></app-counter>
+<p>Component counter value: {{componentCounterValue}}</p>
