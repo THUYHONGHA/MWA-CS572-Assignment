@@ -1,0 +1,15 @@
+<h3>Check smart and dumb component</h3>
+<app-smart></app-smart>
+
+<h3> Check the directive isVisible = true</h3>
+<p [isVisible]="true" >Visible</p>
+
+<h3> Check the directive isVisible = false</h3>
+<p [isVisible]="false" >Visible</p>
+
+<h3>Check MakeBigger directive</h3>
+<input class="btn-primary" type="text" value="MakeBigger" [ngStyle]="{'font-size.px': defaultFontSize}" makeBigger [font_size]="defaultFontSize">
+
+<h3>Check MultiPipe directive</h3>
+<input type="text" #pipeInput value="Hello" (keyup)="0" >
+<p>{{pipeInput.value | multi:3}}</p>
