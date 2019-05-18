@@ -1,0 +1,16 @@
+
+<table border="1">
+  <tr>
+    <th>UserId</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let user of listUsers">
+    <td>{{user.uuid}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td><a [routerLink]="[user.uuid]">View Details</a></td>
+  </tr>
+</table>
+
